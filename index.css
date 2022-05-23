@@ -1,19 +1,18 @@
 html {
-    scroll-behavior: smooth;
-    background-image: url(bgpokemon.jpg);
-    background-size: contain;
-    background-repeat: repeat-y;
+	scroll-behavior: smooth;
+	background-image: url(bgpokemon.jpg);
+	background-size: contain;
 }
 
 header {
-    width: 100%;
+	width: 100%;
 }
 
-/* nav {
+/* div.tudo {
 } */
 
 nav ul {
-    background-color: whitesmoke;
+	background-color: whitesmoke;
 	margin: 0px;
 	height: 10%;
 	width: 100%;
@@ -36,7 +35,53 @@ a {
 	list-style-type: none;
 	text-decoration: none;
 	font-weight: 100;
-	color: rgb(0,0,0);
+	color: rgb(0, 0, 0);
 	cursor: pointer;
 	transition: color 0.1s;
 }
+
+.container {
+	width: 100%;
+	margin-top: 80px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.container div {
+	background-color: #FFF;
+	width: 45%;
+	height: 80vh;
+	padding: 5px;
+	display: flex;
+	flex-flow: wrap column;
+	justify-content: center;
+	align-items: center;
+	border: #000 solid 1px;
+	border-radius: 1%;
+}
+
+.p-input1 {
+	position: relative;
+	width: 100%;
+	z-index: 1;
+	margin-bottom: 20px;
+}
+
+.input1 {
+    display: block;
+    width: 75%;
+    background: #e6e6e6;
+    /* font-family: Montserrat-Bold; */
+    font-size: 15px;
+    line-height: 1.5;
+    color: #626262;
+  }
+
+  input.input1 {
+    margin-top: -10px;
+    height: 50px;
+    border-radius: 25px;
+    padding: 0 30px;
+  }
+  
