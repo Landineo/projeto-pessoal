@@ -1,6 +1,6 @@
 html {
 	scroll-behavior: smooth;
-	background-image: url(bgpokemon.jpg);
+	background-image: url(../assets/bgpokemon.jpg);
 	background-size: contain;
 }
 
@@ -31,13 +31,12 @@ nav ul li {
 	font-family: 'Work Sans', sans-serif;
 }
 
-a {
+nav a {
 	list-style-type: none;
 	text-decoration: none;
 	font-weight: 100;
 	color: rgb(0, 0, 0);
 	cursor: pointer;
-	transition: color 0.1s;
 }
 
 .container {
@@ -64,6 +63,10 @@ a {
 .p-input1 {
 	position: relative;
 	width: 100%;
+	display: flex;
+	flex-flow: wrap column;
+	justify-content: center;
+	align-items: center;
 	z-index: 1;
 	margin-bottom: 20px;
 }
@@ -84,4 +87,18 @@ a {
     border-radius: 25px;
     padding: 0 30px;
   }
+
+  .cardInicio {
+	  width: 60%;
+	  height: 50px;
+	  display: flex;
+	  justify-content: center;
+	  align-items: center;
+	  color: #000;
+	  background-color: white;
+	  margin-top: 100px;
+  }
   
+  .cardInicio a {
+	cursor: pointer;
+  }
