@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/index.css">
+    <script src="js/funcoes.js"></script>
+    <title>PokéTwit</title>
+</head>
+
+<body>
+    <div class="tudo">
+        <header>
+            <nav>
+                <img src="" alt="" id="logo">
+                <ul>
+                    <li>
+                        <a href="index.html">Início</a>
+                    </li>
+                    <li>
+                        <a href="forum.html">Fórum</a>
+                    </li>
+                    <!-- <li>
+                        <a href=""></a>
+                    </li> -->
+                    <li>
+                        <a href="">|</a>
+                    </li>
+                    <li>
+                        <a href="#">Faça login ou Cadastre-se</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <div id="cardErro" style="display: none;">
+            <div id="mensagem_erro"></div>
+            <div id="divAguardar"></div>
+        </div>
+        <div class="container">
+            <div id="login">
+                <h1>Faça login!</h1>
+                <p class="p-input1">
+                    <input class="input1" placeholder="Insira seu nome de usuário/email" type="text" id="userLog">
+                </p>
+                <p class="p-input1">
+                    <input class="input1" placeholder="Insira sua senha" type="password" id="senhaLog">
+                </p>
+                <button onclick="logButton()">Faça Login</button>
+            </div>
+            <div id="cadastro">
+                <h1>Faça seu cadastro!</h1>
+                <p class="p-input1">
+                    <input class="input1" placeholder="Insira seu nome" type="text" id="nomeCad">
+                </p>
+                <p class="p-input1">
+                    <input class="input1" placeholder="Insira seu nome de usuário" type="text" id="usernameCad">
+                </p>
+                <p class="p-input1">
+                    <input class="input1" placeholder="Insira um email válido" type="text" id="emailCad">
+                </p>
+                <p class="p-input1">
+                    <input class="input1" placeholder="Insira sua senha" type="password" id="senhaCad">
+                </p>
+                <p class="p-input1">
+                    <input class="input1" placeholder="Confirme sua senha" type="password" id="confirmSenhaCad">
+                </p>
+                <button onclick="cadastro()">Cadastre-se</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+
+
+    function entrar() {
+        aguardar();
+
+        var emailVar = email_input.value;
+        var senhaVar = senha_input.value;
+
+        if (emailVar == "" || senhaVar == "") {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+            finalizarAguardar();
+            return false;
+        }
+        else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                loginServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.id;
+
+                    setTimeout(function () {
+                        window.location = "forum/indexLogada.html";
+                        // alert("vasefude")
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    finalizarAguardar(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
+    function sumirMensagem() {
+        cardErro.style.display = "none"
+    }
+
+</script>
+<script>
+    function cadastrar() {
+        aguardar();
+
+        //Recupere o valor da nova input pelo nome do id
+        // Agora vá para o método fetch logo abaixo
+        var nomeVar = nome_input.value;
+        var emailVar = email_input.value;
+        var senhaVar = senha_input.value;
+        var confirmacaoSenhaVar = confirmacao_senha_input.value;
+        var poke_favVar = poke_fav.value;
+        var tipo_favVar = tipo_fav.value;
+
+        if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "" || tipo_fav == "0" || poke_fav == "0") {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+
+            finalizarAguardar();
+            return false;
+        }
+        else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+        // Enviando o valor da nova input
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                nomeServer: nomeVar,
+                emailServer: emailVar,
+                senhaServer: senhaVar,
+                poke_favServer: poke_favVar,
+                tipo_favServer: tipo_favVar
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                cardErro.style.display = "block";
+
+                mensagem_erro.innerHTML = "Cadastro realizado com sucesso! Tente logar agora";
+
+                setTimeout(() => {
+                    window.location = "#";
+                }, "2000")
+                
+                limparFormulario();
+                finalizarAguardar();
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            finalizarAguardar();
+        });
+
+        return false;
+    }
+
+    function sumirMensagem() {
+        cardErro.style.display = "none"
+    }
+
+</script>
