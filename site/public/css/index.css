@@ -1,47 +1,13 @@
-html {
+body {
 	scroll-behavior: smooth;
 	background-image: url(../assets/bgpokemon.jpg);
 	background-size: contain;
 }
 
-header {
-	width: 100%;
-}
-
-/* div.tudo {
-} */
-
-nav ul {
-	background-color: whitesmoke;
-	margin: 0px;
-	height: 10%;
-	width: 100%;
-	padding: 1%;
-	padding-right: 70px;
-	position: fixed;
-	top: 0%;
-	text-align: right;
-}
-
-nav ul li {
-	margin-right: 5px;
-	display: inline-block;
-	padding: 1% 18px;
-	font-size: 20px;
-	font-family: 'Work Sans', sans-serif;
-}
-
-nav a {
-	list-style-type: none;
-	text-decoration: none;
-	font-weight: 100;
-	color: rgb(0, 0, 0);
-	cursor: pointer;
-}
-
 .container {
-	width: 100%;
+	width: 75%;
 	margin-top: 80px;
+    margin-left: 21%;
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
