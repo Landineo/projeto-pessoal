@@ -1,0 +1,30 @@
+.card-container{
+    width: 75%;
+    height: 28%;
+    margin-top: 2%;
+    margin-left: 21%;
+    border-radius: 5px;
+    border: 1px solid #000;
+    background-color: rgb(243, 242, 242);
+    position: absolute;
+}
+.card-container2{
+    width: 75%;
+    height: 28%;
+    margin-top: 17%;
+    margin-left: 21%;
+    border-radius: 5px;
+    border: 1px solid #000;
+    background-color: rgb(243, 242, 242);
+    position: absolute;
+}
+.card-container3{
+    width: 75%;
+    height: 28%;
+    margin-top: 32%;
+    margin-left: 21%;
+    border-radius: 5px;
+    border: 1px solid #000;
+    background-color: rgb(243, 242, 242);
+    position: absolute;
+}
