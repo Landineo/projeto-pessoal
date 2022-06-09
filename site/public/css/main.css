@@ -28,7 +28,7 @@ body{
     transition: var(--tran-05);
 	scroll-behavior: smooth;
 	background-image: url(../assets/bgpokemon.jpg);
-	background-size: contain;
+	background-size: cover;
 }
 
 ::selection{

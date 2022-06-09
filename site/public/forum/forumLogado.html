@@ -10,10 +10,10 @@
     <script src="../js/funcoes.js"></script>
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/forum.css">
-    <title>Document</title>
+    <title>PokeTwit</title>
 </head>
 
-<body>
+<body onload="validarSessao(), atualizarFeed()">
 
     <nav class="sidebar close">
         <header>
@@ -24,7 +24,7 @@
 
                 <div class="text logo-text">
                     <span class="name">Bem vindo</span>
-                    <span class="profession" id="nome_usuario" style="display: block">nome</span>
+                    <span class="profession" id="b_usuario" style="display: block">nome</span>
 
                 </div>
             </div>
@@ -69,26 +69,184 @@
 
     </nav>
     <div class="cards">
-        <input placeholder="FALA LOGO PORRAAAAAAAAAAAAAA" class="input-container">
-        <div class="card-container">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, ratione laboriosam quos impedit illo vitae saepe et optio, vel alias qui! Incidunt recusandae iusto quis praesentium illo provident veritatis vero!
-        </div>
-        <div class="card-container">
-
-        </div>
-        <div class="card-container">
-
-        </div>
-        <div class="card-container">
-
-        </div>
-        <div class="card-container">
-
-        </div>
-        <div class="card-container">
-
+        <div class="avisos">
+            <div class="container-aviso">
+                <h2>Faça uma postagem!</h2>
+                <div id="div_aguardar"></div>
+                <div class="div-form">
+                    <form id="form_postagem" method="post" onsubmit="return publicar()">
+                        <label>
+                            Título:
+                            <br>
+                            <input name="titulo" class="input_container" id="titulo" maxlength="40" type="text">
+                        </label>
+                        <br>
+                        <label>
+                            Descrição (máximo de 250 caracteres):
+                            <br>
+                            <textarea name="descricao" class="input_container" id="textarea_descricao" maxlength="280"
+                                rows="5"></textarea>
+                        </label>
+                        <br>
+                        <button class="button-50">Enviar</button>
+                    </form>
+                </div>
+            </div>
+            <div class="div-results">
+                <div id="feed_container" class="feed-container">
+                </div>
+            </div>
         </div>
     </div>
 </body>
 
 </html>
+<script>
+
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
+    function limparFormulario() {
+        document.getElementById("form_postagem").reset();
+    }
+
+    function publicar() {
+        var idUsuario = sessionStorage.ID_USUARIO;
+
+        var corpo = {
+            titulo: form_postagem.titulo.value,
+            descricao: form_postagem.descricao.value
+        }
+
+        fetch(`/avisos/publicar/${idUsuario}`, {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(corpo)
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                window.alert("Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!");
+                window.location = "forumLogado.html";
+                limparFormulario();
+                finalizarAguardar();
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            finalizarAguardar();
+        });
+
+        return false;
+
+    }
+
+    function deletar(idAviso) {
+        console.log("Criar função de apagar post escolhido - ID" + idAviso);
+        fetch(`/avisos/deletar/${idAviso}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(function (resposta) {
+
+            if (resposta.ok) {
+                window.alert("Post deletado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
+                window.location = "forumLogado.html"
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+
+    function atualizarFeed() {
+        //aguardar();
+        fetch("/avisos/listar").then(function (resposta) {
+            if (resposta.ok) {
+                if (resposta.status == 204) {
+                    var feed = document.getElementById("feed_container");
+                    var mensagem = document.createElement("span");
+                    mensagem.innerHTML = "Nenhum resultado encontrado."
+                    feed.appendChild(mensagem);
+                    throw "Nenhum resultado encontrado!!";
+                }
+
+                resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                    var feed = document.getElementById("feed_container");
+                    feed.innerHTML = "";
+                    for (let i = 0; i < resposta.length; i++) {
+                        var publicacao = resposta[i];
+
+                        // criando e manipulando elementos do HTML via JavaScript
+                        var divPublicacao = document.createElement("div");
+                        var spanID = document.createElement("span");
+                        var spanTitulo = document.createElement("span");
+                        var spanNome = document.createElement("span");
+                        var divDescricao = document.createElement("div");
+                        var divButtons = document.createElement("div");
+                        var btnDeletar = document.createElement("button");
+
+                        spanTitulo.innerHTML = " diz: <b>" + publicacao.titulo + "</b>";
+                        spanNome.innerHTML = "<b>@" + publicacao.nome + "</b>";
+                        divDescricao.innerHTML = publicacao.descricao;
+                        btnDeletar.innerHTML = "Deletar";
+
+                        divPublicacao.className = "card-container";
+                        spanTitulo.id = "inputNumero" + publicacao.idAviso;
+                        spanNome.className = "publicacao-nome";
+                        spanTitulo.className = "publicacao-titulo";
+                        divDescricao.className = "publicacao-descricao";
+
+                        divButtons.className = "button-50"
+
+                        btnDeletar.className = "publicacao-btn-editar"
+                        btnDeletar.id = "btnDeletar" + publicacao.idAviso;
+                        btnDeletar.setAttribute("onclick", `deletar(${publicacao.idAviso})`);
+
+                        divPublicacao.appendChild(spanID);
+                        divPublicacao.appendChild(spanNome);
+                        divPublicacao.appendChild(spanTitulo);
+                        divPublicacao.appendChild(divDescricao);
+                        divPublicacao.appendChild(divButtons);
+                        divButtons.appendChild(btnDeletar);
+                        feed.appendChild(divPublicacao);
+                    }
+
+                    finalizarAguardar();
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+            finalizarAguardar();
+        });
+    }
+
+    function testar() {
+        aguardar();
+
+        var formulario = new URLSearchParams(new FormData(document.getElementById("form_postagem")));
+
+        var divResultado = document.getElementById("div_feed");
+
+        divResultado.appendChild(document.createTextNode(formulario.get("descricao")));
+        divResultado.innerHTML = formulario.get("descricao");
+
+        finalizarAguardar();
+
+        return false;
+    }
+
+</script>

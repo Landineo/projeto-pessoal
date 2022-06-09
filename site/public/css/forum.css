@@ -4,16 +4,32 @@
 
 .card-container{
     width: 75%;
-    height: 200px;
+    height: auto;
     margin-top: 30px;
     margin-left: 21%;
     font-size: 25px;
     border-radius: 5px;
     border: 1px solid #000;
     background-color: rgb(243, 242, 242);
-    padding-top: 20px;
+    padding-top: 10px;
     padding-left: 20px;
     padding-right: 20px;
+    padding-bottom: 10px;
+}
+
+.container-aviso{
+    width: 75%;
+    height: auto;
+    margin-top: 20px;
+    margin-left: 21%;
+    font-size: 25px;
+    border-radius: 5px;
+    border: 1px solid #000;
+    background-color: rgb(243, 242, 242);
+    padding-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 10px;
 }
 
 .input-container{
@@ -26,4 +42,21 @@
     border: 1px solid #000;
     background-color: rgb(243, 242, 242);
     text-align: center;
+}
+.container-aviso textarea{
+    width: 80%;
+    padding: 5px;
+    font-size: 15px;
+    border-radius: 5px;
+    border: 1px solid #000;
+    background-color: rgb(243, 242, 242);
+}
+
+.container-aviso input{
+    width: 80%;
+    padding: 5px;
+    font-size: 15px;
+    border-radius: 5px;
+    border: 1px solid #000;
+    background-color: rgb(243, 242, 242);
 }
