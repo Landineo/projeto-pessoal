@@ -37,7 +37,7 @@ function entrar(req, res) {
         res.status(400).send("Sua senha está indefinida!");
     } else {
         
-        usuarioModel.entrar(email, senha)
+        usuarioModel.entrar(email, login, senha)
             .then(
                 function (resultado) {
                     console.log(`\nResultados encontrados: ${resultado.length}`);
@@ -47,7 +47,7 @@ function entrar(req, res) {
                         console.log(resultado);
                         res.json(resultado[0]);
                     } else if (resultado.length == 0) {
-                        res.status(403).send("Email/login e/ou senha inválido(s)");
+                        res.status(403).send("Login e/ou senha inválido(s)");
                     } else {
                         res.status(403).send("Mais de um usuário com o mesmo login e senha!");
                     }
@@ -65,19 +65,22 @@ function entrar(req, res) {
 
 function cadastrar(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
-    var nome = req.body.nomeServer;
+    var usuario = req.body.usuarioServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
+    var nome = req.body.nomeServer;
     var poke_fav = req.body.poke_favServer;
     var tipo_fav = req.body.tipo_favServer;
 
     // Faça as validações dos valores
-    if (nome == undefined) {
-        res.status(400).send("Seu nome está undefined!");
+    if (usuario == undefined) {
+        res.status(400).send("Seu usuario está undefined!");
     } else if (email == undefined) {
         res.status(400).send("Seu email está undefined!");
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
+    } else if (nome == undefined) {
+        res.status(400).send("Sua nome está undefined!");
     } else if (poke_fav == undefined) {
         res.status(400).send("Sua poke_fav está undefined!");
     } else if (tipo_fav == undefined) {
@@ -85,7 +88,7 @@ function cadastrar(req, res) {
     } else {
         
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nome, email, senha, nome, tipo_fav, poke_fav)
+        usuarioModel.cadastrar(usuario, email, senha, nome, tipo_fav, poke_fav)
             .then(
                 function (resultado) {
                     res.json(resultado);

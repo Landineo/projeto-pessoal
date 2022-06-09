@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/index.css">
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-    
+
     <link rel="stylesheet" href="css/main.css">
     <script src="js/funcoes.js"></script>
     <title>PokéTwit</title>
@@ -45,7 +45,7 @@
                 </ul>
 
                 <li class="">
-                    <a href="#">
+                    <a href="forum.html">
                         <i class='bx bx-help-circle icon'></i>
                         <span class="text nav-text">Forum</span>
                     </a>
@@ -62,37 +62,84 @@
     </nav>
     <div id="cardErro" style="display: none;">
         <div id="mensagem_erro"></div>
-        <div id="divAguardar"></div>
+        <div id="div_aguardar"></div>
     </div>
     <div class="container">
         <div id="login">
             <h1>Faça login!</h1>
             <p class="p-input1">
-                <input class="input1" placeholder="Insira seu nome de usuário/email" type="text" id="userLog">
+                <input class="input1" placeholder="Insira seu nome de usuário/email" type="text" id="email_login">
             </p>
             <p class="p-input1">
-                <input class="input1" placeholder="Insira sua senha" type="password" id="senhaLog">
+                <input class="input1" placeholder="Insira sua senha" type="password" id="senha_login">
             </p>
             <button class="button-50" role="button" onclick="entrar()">Faça Login</button>
         </div>
         <div id="cadastro">
             <h1>Faça seu cadastro!</h1>
             <p class="p-input1">
-                <input class="input1" placeholder="Insira seu nome" type="text" id="nomeCad">
+                <input class="input1" placeholder="Insira seu nome" type="text" id="nome_input">
             </p>
             <p class="p-input1">
-                <input class="input1" placeholder="Insira seu nome de usuário" type="text" id="usernameCad">
+                <input class="input1" placeholder="Insira seu nome de usuário" type="text" id="usuario_input">
             </p>
             <p class="p-input1">
-                <input class="input1" placeholder="Insira um email válido" type="text" id="emailCad">
+                <input class="input1" placeholder="Insira um email válido" type="text" id="email_input">
             </p>
             <p class="p-input1">
-                <input class="input1" placeholder="Insira sua senha" type="password" id="senhaCad">
+                <input class="input1" placeholder="Insira sua senha" type="password" id="senha_input">
             </p>
             <p class="p-input1">
-                <input class="input1" placeholder="Confirme sua senha" type="password" id="confirmSenhaCad">
+                <input class="input1" placeholder="Confirme sua senha" type="password" id="confirmacao_senha_input">
             </p>
-            <button class="button-50" role="button" onclick="cadastro()">Cadastre-se</button>
+            <p class="p-input1">
+                <select class="input1" name="" id="poke_fav_input">
+                    <option value="">-- ESCOLHA UM POKÉMON FAVORITO --</option>
+                    <option value="charmander">CHARMANDER</option>
+                    <option value="bulbasaur">BULBASAUR</option>
+                    <option value="squirtle">SQUIRTLE</option>
+                    <option value="pikachu">PIKACHU</option>
+                    <option value="EEVEE">EEVEE</option>
+                    <option value="mew">MEW</option>
+                    <option value="mewtwo">MEWTWO</option>
+                    <option value="jigglypuff">JIGGLYPUFF</option>
+                    <option value="growlithe">GROWLITHE</option>
+                    <option value="psyduck">PSYDUCK</option>
+                    <option value="ponyta">PONYTA</option>
+                    <option value="abra">ABRA</option>
+                    <option value="onix">ONIX</option>
+                    <option value="scyther">SCYTHER</option>
+                    <option value="gyarados">GYARADOS</option>
+                    <option value="dragonite">DRAGONITE</option>
+                    <option value="articuno">ARTICUNO</option>
+                    <option value="zapdos">ZAPDOS</option>
+                    <option value="moltres">MOLTRES</option>
+                </select>
+            </p>
+            <p class="p-input1">
+                <select class="input1" name="" id="tipo_fav_input">
+                    <option value="">-- ESCOLHA UM TIPO FAVORITO --</option>
+                    <option value="normal">NORMAL</option>
+                    <option value="fogo">FOGO</option>
+                    <option value="água">ÁGUA</option>
+                    <option value="grama">GRAMA</option>
+                    <option value="voador">VOADOR</option>
+                    <option value="lutador">LUTADOR</option>
+                    <option value="veneno">VENENO</option>
+                    <option value="elétrico">ELÉTRICO</option>
+                    <option value="terra">TERRA</option>
+                    <option value="pedra">PEDRA</option>
+                    <option value="psíquico">PSÍQUICO</option>
+                    <option value="gelo">GELO</option>
+                    <option value="inseto">INSETO</option>
+                    <option value="fantasma">FANTASMA</option>
+                    <option value="aço">AÇO</option>
+                    <option value="dragão">DRAGÃO</option>
+                    <option value="sombrio">SOMBRIO</option>
+                    <option value="fada">FADA</option>
+                </select>
+            </p>
+            <button class="button-50" role="button" onclick="cadastrar()">Cadastre-se</button>
         </div>
     </div>
 </body>
@@ -105,8 +152,8 @@
     function entrar() {
         aguardar();
 
-        var emailVar = email_input.value;
-        var senhaVar = senha_input.value;
+        var emailVar = email_login.value;
+        var senhaVar = senha_login.value;
 
         if (emailVar == "" || senhaVar == "") {
             cardErro.style.display = "block"
@@ -146,7 +193,7 @@
                     sessionStorage.ID_USUARIO = json.id;
 
                     setTimeout(function () {
-                        window.location = "forum/indexLogada.html";
+                        window.location = "forum/indexLogado.html";
                     }, 1000); // apenas para exibir o loading
 
                 });
@@ -180,13 +227,14 @@
         //Recupere o valor da nova input pelo nome do id
         // Agora vá para o método fetch logo abaixo
         var nomeVar = nome_input.value;
+        var usuarioVar = usuario_input.value;
         var emailVar = email_input.value;
         var senhaVar = senha_input.value;
         var confirmacaoSenhaVar = confirmacao_senha_input.value;
-        var poke_favVar = poke_fav.value;
-        var tipo_favVar = tipo_fav.value;
+        var poke_favVar = poke_fav_input.value;
+        var tipo_favVar = tipo_fav_input.value;
 
-        if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "" || tipo_fav == "0" || poke_fav == "0") {
+        if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "" || tipo_favVar == "0" || poke_favVar == "0") {
             cardErro.style.display = "block"
             mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
 
@@ -206,9 +254,10 @@
             body: JSON.stringify({
                 // crie um atributo que recebe o valor recuperado aqui
                 // Agora vá para o arquivo routes/usuario.js
-                nomeServer: nomeVar,
+                usuarioServer: usuarioVar,
                 emailServer: emailVar,
                 senhaServer: senhaVar,
+                nomeServer: nomeVar,
                 poke_favServer: poke_favVar,
                 tipo_favServer: tipo_favVar
             })
@@ -222,9 +271,9 @@
                 mensagem_erro.innerHTML = "Cadastro realizado com sucesso! Tente logar agora";
 
                 setTimeout(() => {
-                    window.location = "#";
+                    window.location = "login.html";
                 }, "2000")
-                
+
                 limparFormulario();
                 finalizarAguardar();
             } else {

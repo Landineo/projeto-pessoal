@@ -5,7 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/funcoes.js"></script>
     <link rel="stylesheet" href="../css/index.css">
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+
+    <link rel="stylesheet" href="../css/main.css">
     <title>PokeTwit</title>
 </head>
 
@@ -15,19 +19,18 @@
         <header>
             <div class="imagem-text">
                 <span class="image">
-                    <img src="logo.png" alt="">
+                    <img src="../logo.png" alt="">
                 </span>
 
                 <div class="text logo-text">
                     <span class="name">Bem vindo</span>
-                    <span class="profession" id="nome_usuario" style="display: none">nome</span>
-             
+                    <span class="profession" id="nome_usuario" style="display: block">nome</span>
                 </div>
             </div>
             <div class="cadlog">
-            <span class="flcd" style="display: block" > Faça <a href="login.html"> Login </a> ou  </span>
-            <span class="flcd2" style="display: block" ><a href="cadastro.html">Cadastre - se </a></span>
-            </div>    
+                <span class="flcd" style="display: none"> Faça <a href="login.html"> Login </a> ou </span>
+                <span class="flcd2" style="display: none"><a href="cadastro.html">Cadastre - se </a></span>
+            </div>
         </header>
 
         <div class="menu-bar">
@@ -40,19 +43,26 @@
                         </a>
                     </li>
                 </ul>
-        
-                    <li class="">
-                        <a href="#">
-                            <i class='bx bx-help-circle icon' ></i>
-                            <span class="text nav-text">Forum</span>
-                        </a>
-                    </li>
 
-                
+                <li class="">
+                    <a href="forumLogado.html">
+                        <i class='bx bx-help-circle icon'></i>
+                        <span class="text nav-text">Forum</span>
+                    </a>
+                </li>
+
+                <li class="">
+                    <a onclick="limparSessao()">
+                        <i class='bx bx-help-circle icon'></i>
+                        <span class="text nav-text">Sair</span>
+                    </a>
+                </li>
+
+
             </div>
 
             <div class="botao-content">
-               
+
             </div>
         </div>
 

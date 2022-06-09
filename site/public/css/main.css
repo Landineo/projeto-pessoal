@@ -24,9 +24,11 @@
 }
 
 body{
-    min-height: 100vh;
     background-color: var(--body-color);
     transition: var(--tran-05);
+	scroll-behavior: smooth;
+	background-image: url(../assets/bgpokemon.jpg);
+	background-size: contain;
 }
 
 ::selection{

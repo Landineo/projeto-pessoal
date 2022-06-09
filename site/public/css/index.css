@@ -1,13 +1,8 @@
-body {
-	scroll-behavior: smooth;
-	background-image: url(../assets/bgpokemon.jpg);
-	background-size: contain;
-}
-
 .container {
 	width: 75%;
-	margin-top: 80px;
-    margin-left: 21%;
+	height: 100%;
+	margin-top: 2%;
+	margin-left: 21%;
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
@@ -16,7 +11,7 @@ body {
 .container div {
 	background-color: #FFF;
 	width: 45%;
-	height: 80vh;
+	height: 100%;
 	padding: 5px;
 	display: flex;
 	flex-flow: wrap column;
@@ -24,6 +19,18 @@ body {
 	align-items: center;
 	border: #000 solid 1px;
 	border-radius: 1%;
+}
+
+.container #login p {
+	margin-top: 15px;
+}
+
+.container #cadastro h1 {
+	margin-bottom: 6px;
+}
+
+.container #cadastro p {
+	margin-top: 9px;
 }
 
 .p-input1 {
@@ -38,33 +45,47 @@ body {
 }
 
 .input1 {
-    display: block;
-    width: 75%;
-    background: #e6e6e6;
-    /* font-family: Montserrat-Bold; */
-    font-size: 15px;
-    line-height: 1.5;
-    color: #626262;
-  }
+	display: block;
+	width: 75%;
+	background: #e6e6e6;
+	font-size: 15px;
+	line-height: 1.5;
+	color: #626262;
+}
 
-  input.input1 {
-    margin-top: -10px;
-    height: 50px;
-    border-radius: 25px;
-    padding: 0 30px;
-  }
+input.input1 {
+	margin-top: -10px;
+	height: 50px;
+	border-radius: 25px;
+	padding: 0 30px;
+}
 
-  .cardInicio {
-	  width: 60%;
-	  height: 50px;
-	  display: flex;
-	  justify-content: center;
-	  align-items: center;
-	  color: #000;
-	  background-color: white;
-	  margin-top: 100px;
-  }
-  
-  .cardInicio a {
+.cardInicio {
+	width: 60%;
+	height: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: #000;
+	background-color: white;
+	margin-top: 100px;
+}
+
+.cardInicio a {
 	cursor: pointer;
-  }
+}
+
+#cardErro {
+	background-color: #FFF;
+	width: 36%;
+	position: center;
+	height: 100%;
+	padding: 5px;
+	display: flex;
+	flex-flow: wrap column;
+	justify-content: center;
+	align-items: center;
+	border: #000 solid 1px;
+	border-radius: 1%;
+	margin-left: 43%;
+}
