@@ -11,7 +11,7 @@
 :root{
     
     --body-color: #ffffff;
-    --sidebar-color: rgb(0, 0, 0);
+    --sidebar-color: rgb(56, 106, 187);
     --primary-color: #ffffff;
     --primary-color-light: #F6F5FF;
     --toggle-color: rgb(255, 255, 255);
@@ -219,11 +219,11 @@ header .imagem-text .profession{
 /* CSS */
 .button-50 {
   appearance: button;
-  background-color: #000;
+  background-color: var(--sidebar-color);
   background-image: none;
-  border: 1px solid #000;
+  border: 1px solid var(--sidebar-color);
   border-radius: 4px;
-  box-shadow: #fff 4px 4px 0 0,#000 4px 4px 0 1px;
+  box-shadow: #fff 4px 4px 0 0,var(--sidebar-color) 4px 4px 0 1px;
   box-sizing: border-box;
   color: #fff;
   cursor: pointer;
@@ -258,7 +258,7 @@ header .imagem-text .profession{
 }
 
 .button-50:not([disabled]):active {
-  box-shadow: #fff 2px 2px 0 0, #000 2px 2px 0 1px;
+  box-shadow: #fff 2px 2px 0 0, var(--sidebar-color) 2px 2px 0 1px;
   transform: translate(2px, 2px);
 }
 
