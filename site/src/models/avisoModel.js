@@ -10,6 +10,7 @@ function listar() {
             a.fkUsuario,
             u.id AS idUsuario,
             u.nome,
+            u.login,
             u.email,
             u.senha
         FROM postPoke a
@@ -30,6 +31,7 @@ function pesquisarDescricao(texto) {
             a.fkUsuario,
             u.id AS idUsuario,
             u.nome,
+            u.login,
             u.email,
             u.senha
         FROM postPoke a
@@ -51,6 +53,7 @@ function listarPorUsuario(idUsuario) {
             a.fk_usuario,
             u.id AS idUsuario,
             u.nome,
+            u.login,
             u.email,
             u.senha
         FROM postPoke a
@@ -74,7 +77,7 @@ function publicar(titulo, descricao, idUsuario) {
 function deletar(idAviso) {
     console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletar():", idAviso);
     var instrucao = `
-        DELETE FROM postPoke WHERE id = ${idAviso};
+        DELETE FROM postPoke WHERE idPost = ${idAviso};
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);

@@ -4,18 +4,18 @@
 
 <head>
     <meta charset="UTF-8">
-
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <script src="js/funcoes.js"></script>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/forum.css">
+    <link rel="icon" href="assets/logo.png" type="image/icon type">
 
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
 
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/forum.css">
-    <link rel="icon" href="imagens\logo.png" type="image/icon type">
-    <title>PokeTwit</title>
+    <script src="js/funcoes.js"></script>
+
+    <title>PokéTwit</title>
 </head>
 
 <body onload="atualizarFeed()">
@@ -24,7 +24,7 @@
         <header>
             <div class="imagem-text">
                 <span class="image">
-                    <img src="logo.png" alt="">
+                    <img src="assets/logo.png" alt="">
                 </span>
 
                 <div class="text logo-text">
@@ -67,7 +67,8 @@
 
     </nav>
     <div class="cards">
-        <input disabled style="cursor:text" placeholder="Para participar do fórum cadastre-se ou faça login!" class="input-container">
+        <input disabled style="cursor:text" placeholder="Para participar do fórum cadastre-se ou faça login!"
+            class="input-container">
     </div>
 
     <div class="div-results">
@@ -150,7 +151,7 @@
                         var divDescricao = document.createElement("div");
 
                         spanTitulo.innerHTML = " diz: <b>" + publicacao.titulo + "</b>";
-                        spanNome.innerHTML = "<b>@" + publicacao.nome + "</b>";
+                        spanNome.innerHTML = publicacao.nome + " <b>@" + publicacao.login + "</b>";
                         divDescricao.innerHTML = publicacao.descricao;
 
                         divPublicacao.className = "card-container";

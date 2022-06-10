@@ -6,11 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/index.css">
-    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-    <script src="../js/funcoes.js"></script>
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/forum.css">
-    <title>PokeTwit</title>
+    <link rel="icon" href="../assets/logo.png" type="image/icon type">
+
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+
+    <script src="../js/funcoes.js"></script>
+
+    <title>PokéTwit</title>
 </head>
 
 <body onload="validarSessao(), atualizarFeed()">
@@ -19,7 +23,7 @@
         <header>
             <div class="imagem-text">
                 <span class="image">
-                    <img src="../logo.png" alt="">
+                    <img src="../assets/logo.png" alt="">
                 </span>
 
                 <div class="text logo-text">
@@ -54,8 +58,8 @@
 
                 <li class="">
                     <a onclick="limparSessao()">
-                        <i class='bx bx-help-circle icon'></i>
-                        <span class="text nav-text">Sair</span>
+                        <i class='bx bx-exit icon'></i>
+                        <span class="text nav-text">Deslogar</span>
                     </a>
                 </li>
 
@@ -198,7 +202,7 @@
                         var btnDeletar = document.createElement("button");
 
                         spanTitulo.innerHTML = " diz: <b>" + publicacao.titulo + "</b>";
-                        spanNome.innerHTML = "<b>@" + publicacao.nome + "</b>";
+                        spanNome.innerHTML = publicacao.nome + " <b>@" + publicacao.login + "</b>";
                         divDescricao.innerHTML = publicacao.descricao;
                         btnDeletar.innerHTML = "Deletar";
 
@@ -208,9 +212,9 @@
                         spanTitulo.className = "publicacao-titulo";
                         divDescricao.className = "publicacao-descricao";
 
-                        divButtons.className = "button-50"
+                        divButtons.className = ""
 
-                        btnDeletar.className = "publicacao-btn-editar"
+                        btnDeletar.className = "button-50"
                         btnDeletar.id = "btnDeletar" + publicacao.idAviso;
                         btnDeletar.setAttribute("onclick", `deletar(${publicacao.idAviso})`);
 

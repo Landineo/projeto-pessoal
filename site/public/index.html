@@ -3,36 +3,39 @@
 
 <head>
     <meta charset="UTF-8">
-
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/forum.css">
+    <link rel="icon" href="assets/logo.png" type="image/icon type">
 
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-    
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="icon" href="imagens\logo.png" type="image/icon type">
-    <title>PokeTwit</title>
+
+    <script src="js/funcoes.js"></script>
+
+    <title>PokéTwit</title>
 </head>
 
-<body>
+<body onload="atualizacaoPeriodica()">
 
     <nav class="sidebar close">
         <header>
             <div class="imagem-text">
                 <span class="image">
-                    <img src="logo.png" alt="">
+                    <img src="assets/logo.png" alt="">
                 </span>
 
                 <div class="text logo-text">
                     <span class="name">Bem vindo</span>
                     <span class="profession" id="nome_usuario" style="display: none">nome</span>
-             
+
                 </div>
             </div>
             <div class="cadlog">
-            <span class="flcd" style="display: block" > Faça <a href="login.html"> Login </a> ou  </span>
-            <span class="flcd2" style="display: block" ><a href="login.html">Cadastre - se </a></span>
-            </div>    
+                <span class="flcd" style="display: block"> Faça <a href="login.html"> Login </a> ou </span>
+                <span class="flcd2" style="display: block"><a href="login.html">Cadastre - se </a></span>
+            </div>
         </header>
 
         <div class="menu-bar">
@@ -45,56 +48,106 @@
                         </a>
                     </li>
                 </ul>
-                <div class="colunas"  style="display: block">    
+                <div class="colunas" style="display: block">
                     <li class="nav-link">
-                        <a href="#">
-                            <i class='bx bx-circle icon' ></i>
-                            <span class="text nav-text">Campo 1</span>
+                        <a href="#poketwit">
+                            <i class='bx bx-circle icon'></i>
+                            <span class="text nav-text">PokéTwit</span>
                         </a>
                     </li>
 
                     <li class="nav-link">
-                        <a href="#">
-                            <i class='bx bx-circle  icon' ></i>
-                            <span class="text nav-text">Campo 2</span>
+                        <a href="#pokemon">
+                            <i class='bx bx-circle  icon'></i>
+                            <span class="text nav-text">O que são Pokémon?</span>
                         </a>
                     </li>
 
                     <li class="nav-link">
-                        <a href="#">
-                            <i class='bx bx-circle icon' ></i>
-                            <span class="text nav-text">Campo 3</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-link">
-                        <a href="#">
-                            <i class='bx bx-circle  icon' ></i>
-                            <span class="text nav-text">Campo 4</span>
+                        <a href="#analytics">
+                            <i class='bx bx-circle icon'></i>
+                            <span class="text nav-text">Pokémon Favorito</span>
                         </a>
                     </li>
                 </div>
-                    <li class="">
-                        <a href="forum.html">
-                            <i class='bx bx-help-circle icon' ></i>
-                            <span href="forum.html" class="text nav-text">Forum</span>
-                        </a>
-                    </li>
+                <li class="">
+                    <a href="forum.html">
+                        <i class='bx bx-help-circle icon'></i>
+                        <span class="text nav-text">Forum</span>
+                    </a>
+                </li>
 
-                
+
             </div>
 
             <div class="botao-content">
-               
+
             </div>
         </div>
 
     </nav>
-
+    <div id="indexContainer">
+        <div class="card-container" id="poketwit">
+            <img alt="Logo do sitePokéTwit" src="assets/c04e5cf2173f382ce38063ac28fc7524.png"><br>
+            <h3>O que é o PokéTwit?</h3>
+            O PokéTwit é uma comunidade aberta para discussão sobre pokémons ou outras coisas, em formato de um fórum,
+            similar à rede social Twitter!
+        </div>
+        <div class="card-container" id="pokemon">
+            <img src="assets/pokelogo.gif" alt="Logo de Pokémon em GIF"> <br>
+            <h3>O que são Pokémons?</h3>
+            Pokémons são criaturas fictícias criadas em 1995 por Satoshi Tajiri no formato de um jogo chamado Pokémon
+            Red & Blue para Gameboy. <br>
+            Em 1997 foi serializado em um desenho animado, que rapidamente ficou super popular! <br>
+            Atualmente ainda existe o desenho animado, que conta a história de Ash viajando pelo mundo e também existe
+            um jogo de cartas oficial, com torneios que rodam o mundo inteiro!
+        </div>
+        <div class="card-container" id="analytics">
+            Último pokémon favoritado: <span id="pokeFavorito">Pikachu</span><br> <br>
+            Último tipo de pokémon favoritado: <span id="tipoFavorito">Elétrico</span>
+        </div>
+        <div class="card-container" id="redirect">
+            <a href="#" onclick="logar()">Clique aqui para participar de nosso fórum imediatamente!</a>
+        </div>
+    </div>
 
 </body>
 
 </html>
 <script>
+    const capitalizeFirstLetter = ([ first, ...rest ], locale = navigator.language) => first.toLocaleUpperCase(locale) + rest.join('');
+    
+    function logar() {
+        alert("É necessário fazer login antes de participar de nosso fórum de discussões, você será redirecionado automáticamente para a página de login");
 
+        setTimeout(window.location = "login.html", 2000);
+    }
+
+    function atualizacaoPeriodica() {
+        obterdados(1);
+        setTimeout(atualizacaoPeriodica, 5000);
+    }
+
+    function obterdados(idAquario) {
+        fetch(`/medidas/tempo-real/${idAquario}`)
+            .then(resposta => {
+
+                if (resposta.ok) {
+                    resposta.json().then(resposta => {
+
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                        
+                        pokeFavorito.innerHTML = capitalizeFirstLetter(resposta[0].poke_fav);
+                        tipoFavorito.innerHTML = capitalizeFirstLetter(resposta[0].tipo_fav);
+                    });
+                } else {
+
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
+            });
+
+    }
 </script>

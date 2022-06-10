@@ -1,6 +1,6 @@
 .container {
-	width: 75%;
-	height: 100%;
+	width: 78%;
+	height: auto;
 	margin-top: 2%;
 	margin-left: 21%;
 	display: flex;
@@ -61,14 +61,10 @@ input.input1 {
 }
 
 .cardInicio {
-	width: 60%;
-	height: 50px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	width: auto;
+	height: auto;
 	color: #000;
 	background-color: white;
-	margin-top: 100px;
 }
 
 .cardInicio a {
@@ -88,4 +84,12 @@ input.input1 {
 	border: #000 solid 1px;
 	border-radius: 1%;
 	margin-left: 43%;
+}
+
+#indexContainer img {
+	height: 90px;
+}
+
+#indexContainer {
+	text-align: center;
 }
